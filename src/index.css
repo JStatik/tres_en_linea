@@ -1,0 +1,129 @@
+:root {
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.87);
+    color-scheme: light dark;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-synthesis: none;
+    font-variation-settings: "wdth" 100;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    min-width: 320px;
+}
+
+.board {
+    margin: 40px auto;
+    text-align: center;
+    width: fit-content;
+}
+
+.board h1 {
+    color: #eee;
+}
+
+.board button {
+    background: transparent;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    color: #eee;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 25px;
+    padding: 8px 12px;
+    transition: 0.2s;
+    width: 100px;
+}
+
+.board button:hover {
+    background: #eee;
+    color: #222;
+}
+
+.board .game {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.board .turn {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+    position: relative;
+    width: fit-content;
+}
+
+.board .winner {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: grid;
+    height: 100vh;
+    left: 0;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
+
+.square {
+    border: 2px solid #eee;
+    border-radius: 5px;
+    cursor: pointer;
+    display: grid;
+    font-size: 48px;
+    height: 100px;
+    place-items: center;
+    width: 100px;
+}
+
+.square:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.square.is-selected {
+    background: #09f;
+    color: #fff;
+}
+
+.turn .square,
+.winner .square {
+    border-color: transparent;
+    height: 70px;
+    pointer-events: none;
+    width: 70px;
+}
+
+.winner .text {
+    align-items: center;
+    background: #111;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 300px;
+    justify-content: center;
+    width: 320px;
+}
+
+.winner .win {
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+}
