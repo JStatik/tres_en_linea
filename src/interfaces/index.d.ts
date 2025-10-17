@@ -14,3 +14,8 @@ export interface ITurnProps {
     children: ETurns,
     isSelected?: boolean
 }
+
+export interface IArraysEqualParams {
+    board: (ETurns | null)[],
+    prevBoard: (ETurns | null)[]
+}

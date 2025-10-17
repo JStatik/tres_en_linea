@@ -1,41 +1,32 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import type { ETurns, EWinner } from './enums';
 import { TURNS, WINNER } from './config';
-import { checkWinner } from './utils';
+import { arraysEqual, checkWinner, onSetBoard, onSetTurn } from './utils';
 import { ResetButton, Square, Turn } from './components';
 
 const App = () => {
-    const [winner, setWinner] = useState<EWinner>(WINNER.NONE);
+    const [turn, setTurn] = useState<ETurns>(onSetTurn);
+    const [board, setBoard] = useState<(ETurns | null)[]>(onSetBoard);
+    const [prevBoard, setPrevBoard] = useState<(ETurns | null)[]>(board);
 
-    const [turn, setTurn] = useState<ETurns>((): ETurns => {
-        const turn: string | null = localStorage.getItem('turn');
+    const [winner, setWinner] = useState<EWinner>((): EWinner => {
+        const newWinner: EWinner = checkWinner(board);
 
-        if(turn === TURNS.X || turn === TURNS.O)
-            return turn;
-        else {
-            return (Math.round(Math.random()) === 0)
-                ? TURNS.X
-                : TURNS.O;
+        if(newWinner !== WINNER.NONE && newWinner !== WINNER.TIE) {
+            confetti({
+                particleCount: 75,
+                spread: 70
+            });
         }
+
+        return newWinner;
     });
 
-    const [board, setBoard] = useState<(ETurns | null)[]>((): (ETurns | null)[] => {
-        try{
-            const board: string | null = localStorage.getItem('board');
-            const boardParsed = board && JSON.parse(board);
+    if(arraysEqual({ board, prevBoard }) === false) {
+        setPrevBoard(board);
 
-            if(Array.isArray(boardParsed) && boardParsed.length === 9)
-                return boardParsed;
-            else
-                return Array(9).fill(null);
-        } catch(_e) {
-            return Array(9).fill(null);
-        }
-    });
-
-    useLayoutEffect(() => {
         setWinner(() => {
             const newWinner: EWinner = checkWinner(board);
 
@@ -48,7 +39,7 @@ const App = () => {
 
             return newWinner;
         });
-    }, [board]);
+    }
 
     const onReset = (): void => {
         setWinner(WINNER.NONE);
