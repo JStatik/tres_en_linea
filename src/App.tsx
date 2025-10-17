@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import type { ETurns, EWinner } from './enums';
 import { TURNS, WINNER } from './config';
@@ -50,16 +50,16 @@ const App = () => {
         });
     }, [board]);
 
-    const onReset = useCallback((): void => {
+    const onReset = (): void => {
         setWinner(WINNER.NONE);
         setBoard(Array(9).fill(null));
         setTurn(Math.round(Math.random()) === 0 ? TURNS.X : TURNS.O);
 
         localStorage.removeItem('turn');
         localStorage.removeItem('board');
-    }, []);
+    };
 
-    const onSquare = useCallback((position: number): void => {
+    const onSquare = (position: number): void => {
         if(board[position] || winner !== WINNER.NONE)
             return;
 
@@ -80,7 +80,7 @@ const App = () => {
             localStorage.setItem('turn', newTurn);
             return newTurn;
         });
-    }, [board, turn, winner]);
+    };
 
     return (
         <main className="board">

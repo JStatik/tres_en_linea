@@ -1,7 +1,6 @@
-import React from 'react';
 import type { ISquareProps } from '../interfaces';
 
-const Square = React.memo(({ children, onSquare, position }: ISquareProps) => {
+const Square = ({ children, onSquare, position }: ISquareProps) => {
     return (
         <div
             className="square"
@@ -10,8 +9,6 @@ const Square = React.memo(({ children, onSquare, position }: ISquareProps) => {
             {children}
         </div>
     );
-});
-
-Square.displayName = 'Square';
+};
 
 export default Square;

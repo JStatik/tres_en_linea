@@ -1,7 +1,6 @@
-import React from 'react';
 import type { IResetButtonProps } from '../interfaces';
 
-const ResetButton = React.memo(({ onReset }: IResetButtonProps) => {
+const ResetButton = ({ onReset }: IResetButtonProps) => {
     return (
         <button
             type="button"
@@ -10,8 +9,6 @@ const ResetButton = React.memo(({ onReset }: IResetButtonProps) => {
             Empezar de nuevo
         </button>
     );
-});
-
-ResetButton.displayName = 'ResetButton';
+};
 
 export default ResetButton;
