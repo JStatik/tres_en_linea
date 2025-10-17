@@ -5,9 +5,9 @@ import love from 'eslint-config-love';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default tseslint.config([
+export default defineConfig([
     globalIgnores(['dist']),
     {
         ...love,

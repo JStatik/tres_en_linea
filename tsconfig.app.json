@@ -5,6 +5,7 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "types": ["node", "vite/client", "./src/vite-env.d.ts"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -25,7 +26,6 @@
 
     /* Modules */
     "rootDir": "./src",
-    "types": ["node", "./src/vite-env.d.ts"],
 
     /* Output Formatting */
     "noErrorTruncation": true
